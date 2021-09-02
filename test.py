@@ -33,8 +33,8 @@ def gradE(U,V,i,lam):
         return U[i]-V[i]+lam*(2*U[i]-(U[i-1]+lam*U[i+1]))
 
 def threshold(A_1,A_2):
-    #return np.abs((A_1 - A_2)).mean()
-    return np.abs((A_1 - A_2)).max()
+    return np.abs((A_1 - A_2)).mean()
+    #return np.abs((A_1 - A_2)).max()
 
 def SGD(V,lam,k):
     U_old = np.random.rand(N)
@@ -48,8 +48,11 @@ def SGD(V,lam,k):
     print("done with {}times iteration".format(t))
     return U_new
 
+def RMSE(U,U_est):
+    return np.sqrt(((U - U_est)**2).mean())
 #%%
 test_U_new = SGD(V,lam=1.3,k=0.05)
+rmse = np.sqrt(((U-test_U_new)**2).mean())
 plt.plot(U,label="True image",c='r')
 plt.plot(test_U_new,label="Estimated image",c='g')
 plt.plot(V,label="Obsereved image",c='b')
@@ -58,6 +61,6 @@ plt.show()
 print("min: {}".format(test_U_new.min()))
 print("max: {}".format(test_U_new.max()))
 print("mean:{}".format(test_U_new.mean()))
+print("RMSE:{}".format(rmse))
 
-# %%
-sdf
+#%% test
