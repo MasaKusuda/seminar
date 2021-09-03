@@ -64,7 +64,7 @@ def SGD(V,lam,k):
 def RMSE(U,U_est):
     return np.sqrt(((U - U_est)**2).mean())
 #%%
-test_U_new = SGD(V,lam=10,k=0.05)
+test_U_new = SGD(V,lam=0,k=0.05)
 rmse = np.sqrt(((U-test_U_new)**2).mean())
 plt.plot(U,label="True image",c='r')
 plt.plot(test_U_new,label="Estimated image",c='g')
